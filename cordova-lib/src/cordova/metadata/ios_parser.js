@@ -86,18 +86,26 @@ ios_parser.prototype.update_from_config = function(config) {
             case 'portrait':
                 infoPlist['UIInterfaceOrientation'] = [ 'UIInterfaceOrientationPortrait' ];
                 infoPlist['UISupportedInterfaceOrientations'] = [ 'UIInterfaceOrientationPortrait', 'UIInterfaceOrientationPortraitUpsideDown' ];
+                infoPlist['UIInterfaceOrientation~ipad'] = [ 'UIInterfaceOrientationPortrait' ];
+                infoPlist['UISupportedInterfaceOrientations~ipad'] = [ 'UIInterfaceOrientationPortrait', 'UIInterfaceOrientationPortraitUpsideDown' ];
                 break;
             case 'landscape':
                 infoPlist['UIInterfaceOrientation'] = [ 'UIInterfaceOrientationLandscapeLeft' ];
                 infoPlist['UISupportedInterfaceOrientations'] = [ 'UIInterfaceOrientationLandscapeLeft', 'UIInterfaceOrientationLandscapeRight' ];
+                infoPlist['UIInterfaceOrientation~ipad'] = [ 'UIInterfaceOrientationLandscapeLeft' ];
+                infoPlist['UISupportedInterfaceOrientations~ipad'] = [ 'UIInterfaceOrientationLandscapeLeft', 'UIInterfaceOrientationLandscapeRight' ];
                 break;
             default:
                 infoPlist['UIInterfaceOrientation'] = [ orientation ];
+                infoPlist['UIInterfaceOrientation~ipad'] = [ orientation ];
                 delete infoPlist['UISupportedInterfaceOrientations'];
+                delete infoPlist['UISupportedInterfaceOrientations~ipad'];
         }
     } else {
         delete infoPlist['UISupportedInterfaceOrientations'];
         delete infoPlist['UIInterfaceOrientation'];
+        delete infoPlist['UISupportedInterfaceOrientations~ipad'];
+        delete infoPlist['UIInterfaceOrientation~ipad'];
     }
 
     var info_contents = plist.build(infoPlist);
